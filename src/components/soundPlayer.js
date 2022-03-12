@@ -1,12 +1,12 @@
 import { SOUND_ICON_ID, NAVBAR_QUERY } from "../constants.js";
 
 const sounds = {
-	correct: new Audio('../../public/assets/sounds/Negative_Bell_Bling_Game_Sound.wav'),
-	bgMusic: new Audio('../../public/assets/sounds/background-music.mp3')
+	correct: new Audio('public/assets/sounds/Negative_Bell_Bling_Game_Sound.wav'),
+	bgMusic: new Audio('public/assets/sounds/background-music.mp3')
 }
 
-const SOUND_ICON_ON = '../../public/assets/img/soundon.png';
-const SOUND_ICON_MUTE = '../../public/assets/img/mute.png';
+const SOUND_ICON_ON = 'public/assets/img/soundon.png';
+const SOUND_ICON_MUTE = 'public/assets/img/mute.png';
 
 sounds.bgMusic.volume = "0.2";
 
