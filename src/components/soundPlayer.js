@@ -10,11 +10,10 @@ const SOUND_ICON_MUTE = 'https://cometbroom.github.io/quiz-your-future/public/as
 
 sounds.bgMusic.volume = "0.2";
 
-let isSoundOn = true;
-
 const soundIconElement = document.getElementById(SOUND_ICON_ID);
 const navbarElement = document.querySelector(NAVBAR_QUERY);
 
+/*
 const createSliderElement = () => {
 	let slider = document.createElement("input");
 	slider.classList.add("slider");
@@ -26,6 +25,9 @@ const createSliderElement = () => {
 	slider.addEventListener("change", volumeHandler);
 	return slider;
 }
+const sliderVolume = createSliderElement();
+
+*/
 
 export const setSoundIcon = (what) => {
 	switch (what) {
@@ -38,13 +40,11 @@ export const resetBgMusic = () => {
 	sounds.bgMusic.currentTime = 0;
 }
 
-const sliderVolume = createSliderElement();
 
 export const setBgVolume = (vol) => {
 	Object.keys(sounds).forEach(key => {
 		sounds[key].volume = `${vol}`;
 	});
-	sliderVolume.value = (vol * 100);
 }
 
 
@@ -70,7 +70,7 @@ export const pauseBgMusic = () => {
 	sounds.correct.volume = 0;
 	soundIconElement.src = SOUND_ICON_MUTE;
 }
-
+/*
 //Called when vol slide changes
 function volumeHandler() {
 	//Change all sounds volume
@@ -83,6 +83,7 @@ function volumeHandler() {
 		soundIconElement.src = SOUND_ICON_ON;
 	}
 }
+*/
 
 soundIconElement.addEventListener("click", function() {
 	if (sounds.bgMusic.paused) {

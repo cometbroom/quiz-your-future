@@ -3,7 +3,6 @@
 import { USER_INTERFACE_ID, RETURN_HOME_BUTTON_ID } from '../constants.js';
 import { createLastElement, createScoreElement, createAccordionToggle, questionAndAnswerList, createFooter, addFortune } from '../views/lastView.js';
 import { initWelcomePage } from './welcomePage.js';
-import { setBgVolume, setSoundIcon } from '../components/soundPlayer.js';
 import { fortune, quizData } from '../data.js';
 import { clearIntervals, lastPageNav, setDataNavbar } from '../components/navbar.js';
 import { createFortune } from '../components/scoreKeeper.js';
@@ -16,8 +15,6 @@ export const initLastPage = () => {
   clearIntervals();
   quizData.currentQuestionIndex = 0;
   lastPageNav();
-  setBgVolume(0);
-  setSoundIcon("off");
 
   userInterface.innerHTML = '';
   const scoreElement = createScoreElement();
