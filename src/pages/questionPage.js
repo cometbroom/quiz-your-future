@@ -15,7 +15,7 @@ import {
   nextQuestionRegister,
 } from '../components/navbar.js';
 import { score } from '../components/scoreKeeper.js';
-import { playBgMusic, playCorrectQ } from '../components/soundPlayer.js';
+import { playCorrectQ } from '../components/soundPlayer.js';
 import { animateElements } from './pageAnimation.js';
 
 //Check if correct answer is selected

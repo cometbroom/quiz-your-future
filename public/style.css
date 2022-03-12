@@ -38,7 +38,6 @@ h3:hover {
 
 #user-interface {
   margin-top: 10vh;
-  width: 40vw;
 }
 
 .scrollable {
@@ -259,20 +258,44 @@ footer a:focus {
 }
 
 /* Media Queries */
-@media screen and (max-width: 1240px) {
+@media only screen 
+  and (min-width: 768px)
+  and (max-width: 1024px) {
+    #user-interface {
+      margin-top: 10vh;
+      max-width: 50vw;
+    }
+}
+@media only screen 
+and (min-width: 300px) 
+and (max-width: 768px)  { 
+  #user-interface {
+    margin-top: 10vh;
+    width: 80vw;
+  }
+  nav ul {
+    width: 96%;
+  }
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) {
     #user-interface {
       margin-top: 10vh;
       max-width: 50vw;
     }
   }
 
-@media screen and (max-width: 650px) {
+@media only screen 
+and (min-device-width: 300px) 
+and (max-device-width: 736px)  { 
   #user-interface {
     margin-top: 10vh;
-    min-width: 80vw;
+    width: 80vw;
   }
-
   nav ul {
     width: 96%;
   }
 }
+
