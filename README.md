@@ -6,6 +6,10 @@ This is an app as part of a group project by [Ali](https://github.com/cometbroom
 
 [here](https://cometbroom.github.io/quiz-your-future/).
 
+## MindMap
+
+![Mindmap of code with flow chart style](./public/assets/background-img/QYF-background.png "MindMap of code")
+
 ## Requirements
 
 - [x] (must have) A user can see one question at a time, stepping through the quiz
