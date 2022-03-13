@@ -21,5 +21,3 @@ This is an app as part of a group project by [Ali](https://github.com/cometbroom
 - [x] (should have) A user can refresh the page and still have his/her given answers available
 - [x] (could have) A user can "skip" the question and learn the correct answer, this forfeits the question
 - [x] (could have) Transition between pages or question look fancy like TypeForm for example
-
-You should create tasks that fit with your goal, these tasks serve just as an example.
