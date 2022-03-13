@@ -6,10 +6,6 @@ This is an app as part of a group project by [Ali](https://github.com/cometbroom
 
 [here](https://cometbroom.github.io/quiz-your-future/).
 
-## MindMap
-
-![Mindmap of code with flow chart style](./githubAssets/quizApp_mind_map.jpeg "MindMap of code")
-
 ## Requirements
 
 - [x] (must have) A user can see one question at a time, stepping through the quiz
@@ -21,3 +17,8 @@ This is an app as part of a group project by [Ali](https://github.com/cometbroom
 - [x] (should have) A user can refresh the page and still have his/her given answers available
 - [x] (could have) A user can "skip" the question and learn the correct answer, this forfeits the question
 - [x] (could have) Transition between pages or question look fancy like TypeForm for example
+
+## MindMap
+
+![Mindmap of code with flow chart style](./githubAssets/quizApp_mind_map.jpeg "MindMap of code")
+
