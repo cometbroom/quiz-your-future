@@ -21,40 +21,57 @@ import { animateElements } from './pageAnimation.js';
 //Check if correct answer is selected
 let isCorrectAnswerSelected = false;
 
+/**
+ * Initialize our question page with current data
+ * @returns {undefined}
+ */
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
   
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
+  //Create our question element with our text
   const questionElement = createQuestionElement(currentQuestion.text);
 
   userInterface.appendChild(questionElement);
 
+  //Get our answerlist container which was created on questionView with ID
   const answersListElement = document.getElementById(ANSWERS_LIST_ID);
+
+  //Animate our question and answerlist element
   animateElements([questionElement, answersListElement]);
 
-  // put every wrong answers in the wrongAnswers array
+  //Put every wrong answers in the wrongAnswers array
   const wrongAnswers = [];
 
+
+  //Go through each answer element, append and add the relevant events
   for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
     const answerElement = createAnswerElement(answerText);
     answerElement.addEventListener('mouseover', (e) => e.target.classList.add('answer-options-hovering'));
     answerElement.addEventListener('mouseout', (e) => e.target.classList.remove('answer-options-hovering'));
     answersListElement.appendChild(answerElement);
-    answerElement.addEventListener('click', (e) => {
-      currentQuestion.selected = key;
-      answerElementHandler(e);
-      // remove the chosen options from wrongAnswers array
-      wrongAnswers.splice(wrongAnswers.indexOf(answerElement), 1);
-    });
+    answerElement.addEventListener('click', answerClickHandler(key, answerElement));
     // pushing wrong answers to the wrongAnswers array
     if(key !== currentQuestion.correct) {
       wrongAnswers.push(answerElement);
     }   
   }
 
+  function answerClickHandler(key, answerEl) {
+    return (e) => {
+      currentQuestion.selected = key;
+      answerLogicHandler(e);
+      // remove the chosen options from wrongAnswers array
+      wrongAnswers.splice(wrongAnswers.indexOf(answerEl), 1);
+    }
+  }
+  //Add our hint handler to hint button click event
+  document
+  .getElementById(HINT_BUTTON_ID)
+  .addEventListener('click', hintHandler);
 
-  const hintHandler = () => {
+  function hintHandler() {
     // limit the function with wrongAnswers length to stop hint button working when no option to remove
     if (wrongAnswers.length > 0) {
       const randInd = Math.floor(Math.random() * wrongAnswers.length);
@@ -68,35 +85,35 @@ export const initQuestionPage = () => {
       score.total -= 1;
     }
   }
-
-  document
-  .getElementById(HINT_BUTTON_ID)
-  .addEventListener('click', hintHandler);
 }; 
 
-  //Go through each answer and add events
-const answerElementHandler = (e) => {
+//Check question for correct/wrong and do the relevant logic
+const answerLogicHandler = (e) => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
-  //If correct answer selected prevent event from firing.
+  //If correct answer is already selected prevent from continuing.
   if(isCorrectAnswerSelected) return;
   e.target.classList.remove('answer-options-hovering');
   if (currentQuestion.selected === currentQuestion.correct) {
     playCorrectQ();
     e.target.classList.add('answer-option-correct');
     addToCurrentScore(score.total)
+    //Reset our total score for next question
     score.total = 3;
     nextQuestion();
   } else {
    e.target.classList.add('answer-option-wrong');
+   //Subtract score at each wrong answer
     score.total -= 1;
   }
+  //Negative scores shouldn't be possible
   if (score.total < 1) {
         score.total = 0;
-      };
+  };
 }
 
-//Will call next function on callback
+//Will call after delay 800ms
 const delayNext = (callback) => {
+  //Global bool to help prevention of selections during the timeout
   isCorrectAnswerSelected = true;
   setTimeout(() => {
     callback();
@@ -107,11 +124,13 @@ const delayNext = (callback) => {
 const nextQuestion = () => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
 
+  //If reached 10 question, go to last page
   if (quizData.currentQuestionIndex >= quizData.questionsToShow) {
     delayNext(initLastPage);
   } else {
     //Function only comes here when correct answer is selected.
     delayNext(initQuestionPage);
+    //Register next question in navbar
     nextQuestionRegister();
   }
 };

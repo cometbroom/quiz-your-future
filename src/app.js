@@ -28,11 +28,13 @@ const loadApp = () => {
     setDataNavbar(navDataStored);
 
     initInfoUI();
+    //Last page logic
     if (quizData.currentQuestionIndex >= quizData.questionsToShow) {
       initLastPage();
     } else {
       initQuestionPage();
     }
+    //if currentIndex is null, that means we go to welcome page
   } else {
     quizData.currentQuestionIndex = 0;
     initWelcomePage();

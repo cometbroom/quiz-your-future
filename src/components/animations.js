@@ -1,6 +1,7 @@
 let intervalPlaceholder;
 let opacityAdder = 0.02;
 
+//Set opacity of element to 0 and animate it to 1
 export const opacityAnimation = (el) => {
 	el.style.opacity = "0";
 	

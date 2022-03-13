@@ -8,7 +8,11 @@ export const score = {
   finalScore: 0
 }
 
-// Calculates the score based on how quickly the user completes
+/**
+ * Calculates the score based on how quickly the user completes the quiz
+ * @param {number} endScore - Number from 0 to inf
+ * @returns {number}
+ */
 export const scoreMultiplier = (endScore) => {
   let timeGiven = (quizData.questionsToShow * 30);
   let multiplierCalculator = Math.floor((timeGiven - getTimerFromNavbar()) / 20);
@@ -20,8 +24,12 @@ export const scoreMultiplier = (endScore) => {
   }
 };
 
-// returns user's fortune
-export const returnFortune = () => {
+/**
+ * Return user's fortune based on score
+ * @returns {string}
+ */
+ export const returnFortune = () => {
+   //Logic to handle refreshing
   if (fortune.selected !== null) return fortune.selected;
 
   const rndInt = Math.floor(Math.random() * 3);
@@ -35,6 +43,10 @@ export const returnFortune = () => {
   return fortune.selected;
 };
 
+/**
+ * Create fortune html element
+ * @returns {element}
+ */
 export const createFortune = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`

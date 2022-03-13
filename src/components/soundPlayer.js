@@ -11,7 +11,7 @@ const SOUND_ICON_MUTE = 'https://cometbroom.github.io/quiz-your-future/public/as
 sounds.bgMusic.volume = "0.2";
 
 const soundIconElement = document.getElementById(SOUND_ICON_ID);
-const navbarElement = document.querySelector(NAVBAR_QUERY);
+//const navbarElement = document.querySelector(NAVBAR_QUERY);
 
 /*
 const createSliderElement = () => {
@@ -28,7 +28,11 @@ const createSliderElement = () => {
 const sliderVolume = createSliderElement();
 
 */
-
+/**
+ * Will change the speaker icon according to argument
+ * @param {string} what - String for switch statement e.g "on"/"off"
+ * @returns {undefined}
+ */
 export const setSoundIcon = (what) => {
 	switch (what) {
 		case "on": soundIconElement.src = SOUND_ICON_ON; break;
@@ -36,28 +40,36 @@ export const setSoundIcon = (what) => {
 	}
 }
 
+/**
+ * Reset background music from start
+ */
 export const resetBgMusic = () => {
 	sounds.bgMusic.currentTime = 0;
 }
 
-
+/**
+ * Will change the speaker icon according to argument
+ * @param {number} vol - Number from 0 to 1
+ * @returns {undefined}
+ */
 export const setBgVolume = (vol) => {
 	Object.keys(sounds).forEach(key => {
 		sounds[key].volume = `${vol}`;
 	});
 }
 
-
-
+/**
+ * Play the sound for the correct question
+ */
 export const playCorrectQ =  () => {
 	sounds.correct.currentTime = 0;
 	sounds.correct.play();
 }
 
 export let playBgMusic = () => {
-	sounds.correct.volume = 0.2;
-	sounds.bgMusic.volume = 0.2;
-	soundIconElement.src = SOUND_ICON_ON;
+	setBgVolume(0.2);
+	setSoundIcon("on");
+	//Listen for ended sound to loop.
 	sounds.bgMusic.addEventListener('ended', function() {
 		this.currentTime = 0;
 		this.play();
@@ -68,7 +80,7 @@ export let playBgMusic = () => {
 export const pauseBgMusic = () => {
 	sounds.bgMusic.pause();
 	sounds.correct.volume = 0;
-	soundIconElement.src = SOUND_ICON_MUTE;
+	setSoundIcon("off");
 }
 /*
 //Called when vol slide changes
@@ -84,7 +96,7 @@ function volumeHandler() {
 	}
 }
 */
-
+//Event listener for play and pause
 soundIconElement.addEventListener("click", function() {
 	if (sounds.bgMusic.paused) {
 		playBgMusic();
@@ -93,6 +105,7 @@ soundIconElement.addEventListener("click", function() {
 	}
 })
 
+//Pause the music on refresh to avoid breaking autoplay rules
 window.addEventListener("load", () => {
 	pauseBgMusic();
 });

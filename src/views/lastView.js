@@ -5,8 +5,11 @@ import { scoreMultiplier } from '../components/scoreKeeper.js';
 import { RETURN_HOME_BUTTON_ID } from '../constants.js';
 import { quizData } from "../data.js";
 
-// creates the try again button
-export const createLastElement = () => {
+/**
+ * Create the try again button
+ * @returns {element}
+ */
+ export const createLastElement = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`
     <button class="btn-primary" id="${RETURN_HOME_BUTTON_ID}">try again</button>
@@ -14,7 +17,10 @@ export const createLastElement = () => {
   return element;
 };
 
-// this will make the High Score provider
+/**
+ * Create the high score display
+ * @returns {element}
+ */
 export const createScoreElement = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`
@@ -38,7 +44,7 @@ export const createAccordionToggle = () => {
 }
 
 /**
- * Create an Answer element
+ * Create summary of questions and answers element
  * @returns {Element}
  */
 export const questionAndAnswerList = () => {
@@ -58,7 +64,10 @@ export const questionAndAnswerList = () => {
     return element;
 }
 
-// create the footer with the links for the team 
+/**
+ * Create the footer with the links to the team's GitHub
+ * @returns {element}
+ */
 export const createFooter = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`
@@ -74,7 +83,10 @@ export const createFooter = () => {
   return element;
 };
 
-// add the background to the final page
+/**
+ * Create the background to the final page
+ * @returns {element}
+ */
 export const addFortune = () => {
   const element = document.createElement('div');
   element.innerHTML = String.raw`

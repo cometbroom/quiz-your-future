@@ -2,18 +2,15 @@ import { CURRENT_QUESTION_DISPLAY_ID, HIGH_SCORE_DISPLAY_ID, INFO_UI_ID, TIMER_D
 import { quizData } from "../data.js";
 import { opacityAnimation } from "./animations.js";
 
+//Navbar elements
 const infoUI = document.getElementById(INFO_UI_ID);
 const timerDisplay = infoUI.querySelector(`#${TIMER_DISPLAY_ID}`);
 const questionDisplay = infoUI.querySelector(`#${CURRENT_QUESTION_DISPLAY_ID}`);
 const scoreDisplay = infoUI.querySelector(`#${HIGH_SCORE_DISPLAY_ID}`);
-export const navFinalScore = () => {
-	return navData.score;
-};
-export const setNavFinalScore = (amount) => {
-	navData.score = amount;
-}
 //Counter that take our timer's setInterval() method.
 let timerCounter;
+
+//Navbar data which feed one-side to elements
 const navData = {
 	mins: 0,
 	secs: 0,
@@ -26,52 +23,67 @@ const getTimeFormatted = () => {
 		`${navData.mins.toString().padStart(2, '0')}:${navData.secs.toString().padStart(2, '0')}`
 	);
 } 
+
+/**
+ * Gets score from navbar data.
+ * @returns {number}
+ */
+export const navFinalScore = () => {
+	return navData.score;
+};
+
+/**
+ * Sets score on navbar data.
+ * @returns {undefined}
+ */
+export const setNavFinalScore = (amount) => {
+	navData.score = amount;
+}
+
 /**
  * Initialize the top bar info elements.
- * @returns {void}
+ * @returns {undefined}
  */
 export const starterNavUI = () => {
 	timerDisplay.textContent = "00:00";
 	scoreDisplay.textContent = "";
 	questionDisplay.textContent = "";
 };
+/**
+ * Show navbar setup of last page.
+ * @returns {undefined}
+ */
 export const lastPageNav = () => {
 	scoreDisplay.textContent = "";
 	questionDisplay.textContent = "";
 	localStorage.setItem("currentIndex", quizData.questionsToShow);
 }
+/**
+ * Initialize navbar and start timer
+ * @returns {undefined}
+ */
 export const initInfoUI = () => {
 	//Make the initial content with forEach loop
-	//Question upperlimit according to data
 	const initContent = [
 		"", 
 		`${navData.qCurrent}/${navData.qMax}`, 
-		getTimeFormatted()];
-
+		getTimeFormatted()
+	];
 	initContent.forEach((item, idx) => {
-		//Child 0, 1, 2 always have to be the same for this to work
 		infoUI.children[idx].textContent = item;
 	})
-	//Make our second and mins variables
 
-	//Interval that will count the time and update its display
 	timerCounter = setInterval(() => {
-
 		//Add seconds or minutes according to clock standard
 		navData.secs < 59 ? navData.secs++: (navData.mins++, navData.secs = 0);
 		timerDisplay.textContent = getTimeFormatted();
 	}, 1000);
 }
 
-window.addEventListener('beforeunload', () => {
-	if (localStorage.getItem('currentIndex') != null) {
-		localStorage.setItem('navData', JSON.stringify(navData));
-	} 
-});
 
 /**
  * Register the current question's index on the UI display
- * @returns {void}
+ * @returns {undefined}
  */
 export const nextQuestionRegister = () => {
 	navData.qCurrent++;
@@ -82,7 +94,7 @@ export const nextQuestionRegister = () => {
 /**
  * Add to the user's score
  * @param {number} amount - Amount to add by.
- * @returns {void}
+ * @returns {undefined}
  */
  export const addToCurrentScore = (amount) => {
 	navData.score += amount;
@@ -99,7 +111,7 @@ export const nextQuestionRegister = () => {
 
 /**
  * Remove our UI infos and clear intervals.
- * @returns {void}
+ * @returns {undefined}
  */
 export const removeUIInfos = () => {
 	timerDisplay.textContent = '';
@@ -109,7 +121,7 @@ export const removeUIInfos = () => {
 
 /**
  * Clear the set intervals for the navbar component.
- * @returns {void}
+ * @returns {undefined}
  */
 export const clearIntervals = () => {
 	clearInterval(timerCounter);
@@ -123,8 +135,20 @@ export const getTimerFromNavbar = () => {
 }
 
 export const getDataNavbar = () => navData;
+/**
+ * Will only set the provided keys to navData object
+ * @param {object} data - Data object to take similar props from.
+ * @returns {undefined}
+ */
 export const setDataNavbar = (data) => {
 	Object.keys(data).forEach(key => {
 		navData[key] = data[key];
 	});
 }
+
+//Unload the navdata to localStorage
+window.addEventListener('beforeunload', () => {
+	if (localStorage.getItem('currentIndex') != null) {
+		localStorage.setItem('navData', JSON.stringify(navData));
+	} 
+});

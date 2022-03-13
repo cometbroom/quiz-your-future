@@ -10,8 +10,12 @@ import { animateElements } from './pageAnimation.js';
 
 const userInterface = document.getElementById(USER_INTERFACE_ID);
 
+/**
+ * Add our last page to userInterface
+ * @returns {undefined}
+ */
 export const initLastPage = () => {
-
+  //Stop timer
   clearIntervals();
   quizData.currentQuestionIndex = 0;
   lastPageNav();
@@ -33,6 +37,7 @@ export const initLastPage = () => {
   userInterface.appendChild(accordionToggleDiv);
   userInterface.appendChild(footer);
 
+  //Animate all elements' individual opacity
   animateElements([
     scoreElement,lastElement,qaList,accordionToggleDiv,footer
   ]);
@@ -40,9 +45,12 @@ export const initLastPage = () => {
   document
     .getElementById(RETURN_HOME_BUTTON_ID)
     .addEventListener('click', restartQuiz);
+    //Event listener to toggle q&a list accordion
   accordionToggleDiv.addEventListener('click', accordionToggled(qaList))
 };
 
+//Will toggle between 0 maxHeight and fit-content maxHeight
+//qaList can be any element
 const accordionToggled = (qaList) => {
   return () => {
     if (qaList.style.maxHeight) {

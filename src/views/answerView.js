@@ -1,6 +1,4 @@
 'use strict';
-import { quizData } from '../data.js';
-import { ANSWERS_LIST_ID } from '../constants.js';
 
 /**
  * Create an Answer element
