@@ -8,7 +8,7 @@ This is an app as part of a group project by [Ali](https://github.com/cometbroom
 
 ## MindMap
 
-![Mindmap of code with flow chart style](./public/assets/background-img/QYF-background.png "MindMap of code")
+![Mindmap of code with flow chart style](./githubAssets/quizApp_mind_map.jpeg "MindMap of code")
 
 ## Requirements
 
