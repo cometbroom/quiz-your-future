@@ -18,6 +18,11 @@ This is an app as part of a group project by [Ali](https://github.com/cometbroom
 - [x] (could have) A user can "skip" the question and learn the correct answer, this forfeits the question
 - [x] (could have) Transition between pages or question look fancy like TypeForm for example
 
+## Development
+
+`npm start` to start watching on localhost:8080
+`npm run build` to build into build/ directory.
+
 ## MindMap
 
 ![Mindmap of code with flow chart style](./githubAssets/quizApp_mind_map.jpeg "MindMap of code")
