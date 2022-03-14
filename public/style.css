@@ -39,6 +39,7 @@ h3:hover {
 #user-interface {
   width: 40vw;
   margin-top: 10vh;
+  position: relative;
 }
 
 .scrollable {
@@ -46,7 +47,6 @@ h3:hover {
   max-height: 80vh;
   overflow: auto;
 }
-
 
 /* Nav bar */
 section.navbar {
@@ -62,13 +62,12 @@ nav ul {
   align-items: center;
   font-size: 2em;
   color: white;
-  padding: 10px 10px ;
+  padding: 10px 10px;
   width: 98%;
   margin: auto;
   margin-right: 10px;
   max-height: 40px;
 }
-
 
 nav ul #info-ui {
   display: flex;
@@ -84,7 +83,7 @@ nav ul #info-ui {
 .slider {
   -webkit-appearance: slider-vertical;
   position: absolute;
-  width:10px;
+  width: 10px;
   filter: grayscale(100%);
 }
 
@@ -109,7 +108,7 @@ ul {
   padding-left: 0;
 }
 
-nav ul li{
+nav ul li {
   max-height: 40px;
 }
 
@@ -129,11 +128,11 @@ nav ul li{
 }
 
 /* QnA list */
-.qalist-wrapper{
+.qalist-wrapper {
   background-color: #d0d0d0;
 }
 
-.qalist-wrapper>div {
+.qalist-wrapper > div {
   overflow: hidden;
   transition: max-height 0.4s ease;
   max-height: 0;
@@ -151,13 +150,13 @@ nav ul li{
 }
 
 .answer-options {
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   color: #4e4e4e;
   cursor: pointer;
   border: 1px solid #f4f4f4;
   border-radius: 3px;
   margin: 10px auto;
-  padding: 1.4rem .5rem .2rem 1rem;
+  padding: 1.4rem 0.5rem 0.2rem 1rem;
   text-align: left;
   height: 3rem;
   font-size: 1.6rem;
@@ -190,8 +189,7 @@ nav ul li{
 }
 
 .q-list-ending {
-padding: 0;
-
+  padding: 0;
 }
 
 .qa-question {
@@ -213,7 +211,7 @@ padding: 0;
 
 .btn-primary {
   background-color: #414141;
-  padding: .5rem 3rem;
+  padding: 0.5rem 3rem;
   font-size: 2rem;
   color: white;
   border: none;
@@ -228,7 +226,7 @@ padding: 0;
 }
 
 /* Last Page */
-.fortune-img{
+.fortune-img {
   width: 220px;
 }
 
@@ -239,7 +237,7 @@ padding: 0;
 }
 
 footer {
-  background:white;
+  background: white;
   color: #414141;
 }
 
@@ -259,17 +257,13 @@ footer a:focus {
 }
 
 /* Media Queries */
-@media only screen 
-  and (min-width: 601px)
-  and (max-width: 1024px) {
-    #user-interface {
-      margin-top: 10vh;
-      width: 50vw;
-    }
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  #user-interface {
+    margin-top: 10vh;
+    width: 50vw;
+  }
 }
-@media only screen 
-and (min-width: 300px) 
-and (max-width: 600px)  { 
+@media only screen and (min-width: 300px) and (max-width: 600px) {
   #user-interface {
     margin-top: 10vh;
     width: 80vw;
@@ -279,18 +273,14 @@ and (max-width: 600px)  {
   }
 }
 
-@media only screen 
-  and (min-device-width: 601px) 
-  and (max-device-width: 1024px) {
-    #user-interface {
-      margin-top: 10vh;
-      width: 50vw;
-    }
+@media only screen and (min-device-width: 601px) and (max-device-width: 1024px) {
+  #user-interface {
+    margin-top: 10vh;
+    width: 50vw;
   }
+}
 
-@media only screen 
-and (min-device-width: 300px) 
-and (max-device-width: 600px)  { 
+@media only screen and (min-device-width: 300px) and (max-device-width: 600px) {
   #user-interface {
     margin-top: 10vh;
     width: 80vw;
@@ -299,4 +289,3 @@ and (max-device-width: 600px)  {
     width: 96%;
   }
 }
-
