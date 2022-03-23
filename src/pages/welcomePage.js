@@ -1,11 +1,16 @@
 'use strict';
 
-import { initInfoUI, nextQuestionRegister, starterNavUI } from '../components/navbar.js';
+import {
+  initInfoUI,
+  nextQuestionRegister,
+  starterNavUI,
+} from '../components/navbar.js';
 import { USER_INTERFACE_ID, START_QUIZ_BUTTON_ID } from '../constants.js';
-import { shuffleQuestions } from '../data.js';
+import { quizData, shuffleQuestions } from '../data.js';
 import { createWelcomeElement } from '../views/welcomeView.js';
 import { initQuestionPage } from './questionPage.js';
 import { addFortune } from '../views/lastView.js';
+import { addDataListener } from '../../API/firebase-init.js';
 
 /**
  * Initialize our welcome page
@@ -16,6 +21,9 @@ export const initWelcomePage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
 
+  addDataListener().then(() => {
+    console.log('success');
+  });
   //Make fortune img for welcome page
   const fortune = addFortune();
   const welcomeElement = createWelcomeElement();
@@ -28,7 +36,6 @@ export const initWelcomePage = () => {
 };
 
 const startQuiz = () => {
-
   shuffleQuestions();
   nextQuestionRegister();
   initQuestionPage();
